@@ -101,6 +101,7 @@ form {
 .intro .intro-msg p {
 	margin: 0;
 	padding: 0;
+	line-height: 1.4em;
 }
 
 
@@ -163,12 +164,7 @@ form {
 
 /* SWIPING BUDDY */
 
-.swipe .btn-bottom {
-	background-image: url('images/icon-slack_256.png');
-	background-repeat: no-repeat;
-	background-size: 24px;
-	background-position: 10px 18px;
-}
+.swipe .btn-bottom {}
 
 #buddy-container {
 	position: relative;
@@ -207,7 +203,6 @@ form {
 	font-weight: 100;
 	font-size: 2.5em;
 	color: #333;
-    word-break: break-all;
 }
 .buddy .info p {
 	margin: 0;
