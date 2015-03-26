@@ -197,6 +197,7 @@ form {
 	font-weight: 100;
 	font-size: 2.5em;
 	color: #333;
+    word-break: break-all;
 }
 .buddy .info p {
 	margin: 0;
