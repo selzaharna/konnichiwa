@@ -2,11 +2,11 @@ var SlackThis = (function () {
  
     var cfg = {
             api_url : "https://slack.com/api/",
-            api_token : "YOUR_TOKEN_HERE", 
+            api_token : "xoxp-2194787930-4146388799-4203794499-4df53e",
             api_endpoints : {
                 "users" : "users.list",
                 "chat"  : "chat.postMessage"
-            },
+            }
     },
 
     sendMessage = function(params) {
