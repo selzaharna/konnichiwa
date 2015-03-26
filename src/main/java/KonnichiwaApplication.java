@@ -23,7 +23,8 @@ public class KonnichiwaApplication extends Application<KonnichiwaConfiguration> 
     @Override
     public void run(KonnichiwaConfiguration configuration,
                     Environment environment) {
-        // nothing to do yet
+        final OAuthResource resource = new OAuthResource();
+        environment.jersey().register(resource);
     }
 
 }
