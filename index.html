@@ -23,7 +23,7 @@
 	</div>
 </section>
 
-<button class="btn-bottom">Get Started</button>
+<button class="btn-bottom get-started">Get Started</button>
 
 
 
@@ -49,6 +49,13 @@ $(function() {
     	step = (step > limit) ? 0 : step + 1;
     	$(".intro").addClass("bg"+step);
   	},seconds);
+
+  	// play sound on 'get started' button click
+  	var audioElement = document.createElement('audio');
+		audioElement.setAttribute('src', 'sound/k.mp3');
+		$('.get-started').click(function() {
+			audioElement.play();
+		});
 
 });
 </script>
