@@ -50,7 +50,7 @@ public class OAuthResource {
             OAuthClientRequest oauthRequest = OAuthClientRequest
                     .authorizationLocation("https://slack.com/oauth/authorize")
                     .setClientId("2194787930.4206060083")
-                    .setRedirectURI("http://localhost:9010/konnichiwa/auth/response")
+                    .setRedirectURI("http://www-dev.addthis.com:8080/konnichiwa/auth/response")
                     .buildQueryMessage();
 
             response.sendRedirect(oauthRequest.getLocationUri());
@@ -83,7 +83,7 @@ public class OAuthResource {
                     .tokenLocation("https://slack.com/api/oauth.access")
                     .setClientId("2194787930.4206060083")
                     .setClientSecret("d89a56f09f24377695b2feaf636915b2")
-                    .setRedirectURI("http://localhost:9010/konnichiwa/auth/response")
+                    .setRedirectURI("http://www-dev.addthis.com:8080/konnichiwa/auth/response")
                     .setCode(code)
                     .buildQueryMessage();
 
