@@ -27,7 +27,7 @@ form {
 	left: 0;
 	right: 0;
 	display: block;
-	background: #FF5C3E;
+	background: #563552;
 	border: none;
 	width: 100%;
 	height: 60px;
@@ -111,11 +111,11 @@ form {
 	background-image: url('images/welcome_3.png');
 }
 .login .btn-bottom {
-	background: #a9d029;
+	background: #4fc3a0;
 }
 .login .intro-login {
 	position: absolute;
-	top: 25%;
+	top: 20%;
 	left: 0;
 	right: 0;
 	padding: 0 30px;
@@ -124,8 +124,12 @@ form {
 	color: #fff;
 }
 .login .intro-login h1 {
+	background-image: url('images/icon-slack_256.png');
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-size: 64px; 
 	margin: 0 0 15px 0;
-	padding: 0;
+	padding: 78px 0 0;
 	font-weight: 100;
 	font-size: 2.5em;
 	color: #fff;
@@ -134,6 +138,9 @@ form {
 	margin: 0;
 	padding: 0;
 }
+.login .intro-login p:first-of-type {
+	margin-bottom: 30px;
+}	
 .login .intro-login input {
 	display: block;
 	max-width: 254px;
@@ -157,7 +164,10 @@ form {
 /* SWIPING BUDDY */
 
 .swipe .btn-bottom {
-	background: #1a98fc;
+	background-image: url('images/icon-slack_256.png');
+	background-repeat: no-repeat;
+	background-size: 24px;
+	background-position: 10px 18px;
 }
 
 #buddy-container {
