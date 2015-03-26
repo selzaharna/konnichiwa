@@ -1,0 +1,265 @@
+html,body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: #fff;
+	font-family: "roboto","helvetica neue",helvetica,arial,sans-serif !important;
+	font-size: 14px;
+	font-weight: 300;
+	font-style: normal;
+	color: #66625b;
+}
+
+form {
+	margin: 0;
+	padding: 0;
+}
+
+/* ACTION BUTTON AT THE BOTTOM */
+
+.action-bottom {}
+.action-bottom .btn-bottom {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: block;
+	background: #FF5C3E;
+	border: none;
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	font-weight: 100;
+	font-size: 18px;
+	color: #fff;
+	cursor: pointer;
+}
+
+/* INTRO SCREEN */
+
+.intro {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 60px;
+	background-image: url('images/welcome_1.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	-webkit-transition: background 500ms linear;
+    -moz-transition: background 500ms linear;
+    -o-transition: background 500ms linear;
+    -ms-transition: background 500ms linear;
+    transition: background 500ms linear;
+}
+.intro:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: -webkit-gradient(
+	  linear, left top, left bottom, 
+	      from(rgba(0, 0, 0, 0)),
+          to(rgba(0, 0, 0, .65))
+	);
+}
+.intro.bg1 {
+	background-image: url('images/welcome_1.png');
+}
+.intro.bg2 {
+	background-image: url('images/welcome_2.png');
+}
+.intro.bg3 {
+	background-image: url('images/welcome_3.png');
+}
+
+.intro .intro-msg {
+	position: absolute;
+	bottom: 60px;
+	left: 0;
+	right: 0;
+	padding: 0 30px;
+	text-align: center;
+	font-size: 18px;
+	color: #fff;
+}
+.intro .intro-msg h1 {
+	margin: 0 0 15px 0;
+	padding: 0;
+	font-weight: 100;
+	font-size: 2.5em;
+	color: #fff;
+}
+.intro .intro-msg p {
+	margin: 0;
+	padding: 0;
+}
+
+
+/* SIGN IN */
+
+.login {}
+.login .intro {
+	background-image: url('images/welcome_3.png');
+}
+.login .btn-bottom {
+	background: #a9d029;
+}
+.login .intro-login {
+	position: absolute;
+	top: 25%;
+	left: 0;
+	right: 0;
+	padding: 0 30px;
+	text-align: center;
+	font-size: 18px;
+	color: #fff;
+}
+.login .intro-login h1 {
+	margin: 0 0 15px 0;
+	padding: 0;
+	font-weight: 100;
+	font-size: 2.5em;
+	color: #fff;
+}
+.login .intro-login p {
+	margin: 0;
+	padding: 0;
+}
+.login .intro-login input {
+	display: block;
+	background: none;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 1px solid #fff;
+	border-radius: 0;
+	width: 100%;
+	margin-top: 20px;
+	padding: 8px 0;
+	outline: none;
+	text-align: center;
+	font-size: 18px;
+	color: #fff;
+}
+
+
+
+/* SWIPING BUDDY */
+
+.swipe .btn-bottom {
+	background: #1a98fc;
+}
+
+#buddy-container {
+	position: relative;
+	margin: auto !important;	
+	min-height: 380px;	
+	list-style-type: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.buddy {
+	display: none;
+	position: absolute;
+	top: 30px;
+	left: calc(50% - 160px);
+	background: #fff;
+	border-radius: 3px;
+	box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+	width: 300px;
+	height: 300px;
+	color: #fff;
+	padding: 10px;	
+	cursor: hand;
+}
+.buddy .info {
+	padding-top: 40px;
+	text-align: center;
+	font-size: 16px;
+}
+.buddy .info h2 {
+	margin: 0 0 10px 0;
+	padding: 0;
+	font-weight: 100;
+	font-size: 2.5em;
+	color: #333;
+}
+.buddy .info p {
+	margin: 0;
+	padding: 0 0 10px 0;
+	font-size: 16px;
+	color: #999;
+}
+
+.rotate-left {
+	transform: rotate(30deg) scale(0.8);
+	transition: 1s;
+	margin-left: 400px;
+	cursor: e-resize;
+	opacity: 0;
+}
+.rotate-right {
+	transform: rotate(-30deg) scale(0.8);
+	transition: 1s;
+	opacity: 0;
+	margin-left: -400px;
+	cursor: w-resize;
+}
+.avatar {
+	position: relative;
+	display: block;
+	background: #eaeaea url('images/bg-peep.png') no-repeat center;
+	width: 280px;
+	height: 280px;
+	margin-top: 10px;
+	margin-left: 10px;
+	background-size: 100% auto !important;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.like {
+	border-radius: 5px;
+	padding: 5px 10px;
+	border: 2px solid green;
+	color: green;
+	text-transform: uppercase;
+	font-size: 15px;
+	position: absolute;
+	top: 50px;
+	right: 40px;
+	text-shadow: none;
+}
+.dislike {
+	border-radius: 5px;
+	padding: 5px 10px;
+	border: 2px solid red;
+	color: red;
+	text-transform: uppercase;
+	font-size: 15px;
+	position: absolute;
+	top: 50px;
+	left: 40px;
+	text-shadow: none;
+}
+
+
+.hide,
+.ui-loader {
+	display: none;
+}
+
+
+
+

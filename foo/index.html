@@ -1,0 +1,57 @@
+<!doctype html>
+<!--[if lt IE 7 ]><html lang="en" class="no-js ie ie6"><![endif]-->
+<!--[if IE 7 ]><html lang="en" class="no-js ie ie7"><![endif]-->
+<!--[if IE 8 ]><html lang="en" class="no-js ie ie8"><![endif]-->
+<!--[if IE 9 ]><html lang="en" class="no-js ie ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js" ><!--<![endif]-->
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<title>Konnichiwa!</title>
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link href='//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body class="action-bottom">
+
+<section class="intro">
+	<div class="intro-msg">
+		<h1>Konnichiwa</h1>
+		<p>Our team is growing, and it's time to greet our comrades.</p>
+	</div>
+</section>
+
+<button class="btn-bottom">Get Started</button>
+
+
+
+<!-- load bg images, so i doesn't flicker on iphone? -->
+<img src="images/welcome_2.png" class="hide">
+<img src="images/welcome_3.png" class="hide">
+
+<!-- scripting -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+<script>
+$(function() {
+
+	// swap backgrounds on intro...
+	var seconds = 5000;
+	var step = 0;
+	var limit = 3;
+
+	$(".intro").addClass("bg"+step);
+
+  	setInterval(function(){
+    	$(".intro").removeClass("bg"+step);
+    	step = (step > limit) ? 0 : step + 1;
+    	$(".intro").addClass("bg"+step);
+  	},seconds);
+
+});
+</script>
+
+</body>
+</html>

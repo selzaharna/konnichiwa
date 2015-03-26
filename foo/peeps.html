@@ -1,0 +1,98 @@
+<!doctype html>
+<!--[if lt IE 7 ]><html lang="en" class="no-js ie ie6"><![endif]-->
+<!--[if IE 7 ]><html lang="en" class="no-js ie ie7"><![endif]-->
+<!--[if IE 8 ]><html lang="en" class="no-js ie ie8"><![endif]-->
+<!--[if IE 9 ]><html lang="en" class="no-js ie ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js" ><!--<![endif]-->
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<title>Konnichiwa!</title>
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link href='//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body class="action-bottom swipe">
+
+<section class="peeps">
+	
+	<div id="buddy-container">
+		<div class="buddy" style="display:block;">
+			<div class="avatar" style="background-image: url(http://1.bp.blogspot.com/_qEbjiFbQWGM/TCBVlN3mkYI/AAAAAAAADCM/7CjYqUHwbgY/s1600/workshop_modell_0126.jpg)"></div>
+			<div class="info">
+				<h2>Amy</h2>
+				<p>Lorem Ipsum Dolor Sit</p>
+			</div>
+		</div>
+		<div class="buddy">
+			<div class="avatar" style="background-image: url(http://static.stylemagazin.hu/medias/29280/Nem-ehezik-a-Women-of-the-Year-legjobb-modell-dijara-eselyes-szepseg_32fc7c86954a8847610499a0fc7261e2.jpg)"></div>
+			<div class="info">
+				<h2>Candice</h2>
+				<p>Lorem Ipsum Dolor Sit</p>
+			</div>
+		</div>  
+		<div class="buddy">
+			<div class="avatar" style="background-image: url(http://img19.olx.hu/images_aprodhu/4415195_2_644x461_portre-modell-es-portfolio-fotozast-vallalok-toltson-fel-fenykepeket.jpg)"></div>
+			<div class="info">
+				<h2>Lisa</h2>
+				<p>Lorem Ipsum Dolor Sit</p>
+			</div>
+	 	</div>  
+		<div class="buddy">
+			<div class="avatar" style="background-image: url(http://static.168ora.hu/db/09/AF/orban-d0001C9AFa1ba9618c180.jpg)"></div>
+			<div class="info">
+				<h2>Some Dude</h2>
+				<p>Lorem Ipsum Dolor Sit</p>
+			</div>
+		</div>  
+	</div>
+
+
+</section>
+
+<button class="btn-bottom">Konnichiwa!</button>
+
+
+
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+<script>
+$(function() {
+
+	$(".buddy").on("swiperight",function(){
+      $(this).addClass('rotate-left').delay(700).fadeOut(1);
+      $('.buddy').find('.status').remove();
+
+      $(this).append('<div class="status like">I know you!</div>');      
+      if ( $(this).is(':last-child') ) {
+        $('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').fadeIn(300);
+       } else {
+          $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
+       }
+    });  
+
+   $(".buddy").on("swipeleft",function(){
+    $(this).addClass('rotate-right').delay(700).fadeOut(1);
+    $('.buddy').find('.status').remove();
+    $(this).append('<div class="status dislike">Nope!</div>');
+
+    if ( $(this).is(':last-child') ) {
+     $('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').fadeIn(300);
+      alert('Na-na!');
+     } else {
+        $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
+    } 
+  });
+
+});
+</script>
+
+</body>
+</html>
+
+
