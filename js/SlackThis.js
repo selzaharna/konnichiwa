@@ -78,7 +78,6 @@ var SlackThis = (function () {
 
                 for (key in members) {
                     if (members.hasOwnProperty(key)) {
-                        //console.log(members[key]);
                         user = {
                             id    : members[key].id,
                             name  : (members[key].real_name) ? members[key].real_name : members[key].name,
