@@ -77,12 +77,12 @@ var SlackThis = (function () {
             } else {
 
                 for (key in members) {
-                    if (members.hasOwnProperty(key)) {
+                    if (members.hasOwnProperty(key) && !members[key].is_bot) {
                         user = {
                             id    : members[key].id,
                             name  : (members[key].real_name) ? members[key].real_name : members[key].name,
                             email : members[key].profile.email,
-                            title : (members[key].profile.title) ? members[key].profile.title : 'I have no title',
+                            title : (members[key].profile.title) ? members[key].profile.title : '',
                             image : (members[key].profile.image_original) ? members[key].profile.image_original : members[key].profile.image_192
                         }
 
