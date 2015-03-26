@@ -19,34 +19,7 @@
 <section class="peeps">
 	
 	<div id="buddy-container">
-		<div class="buddy" style="display:block;">
-			<div class="avatar" style="background-image: url(http://1.bp.blogspot.com/_qEbjiFbQWGM/TCBVlN3mkYI/AAAAAAAADCM/7CjYqUHwbgY/s1600/workshop_modell_0126.jpg)"></div>
-			<div class="info">
-				<h2>Amy</h2>
-				<p>Lorem Ipsum Dolor Sit</p>
-			</div>
-		</div>
-		<div class="buddy">
-			<div class="avatar" style="background-image: url(http://static.stylemagazin.hu/medias/29280/Nem-ehezik-a-Women-of-the-Year-legjobb-modell-dijara-eselyes-szepseg_32fc7c86954a8847610499a0fc7261e2.jpg)"></div>
-			<div class="info">
-				<h2>Candice</h2>
-				<p>Lorem Ipsum Dolor Sit</p>
-			</div>
-		</div>  
-		<div class="buddy">
-			<div class="avatar" style="background-image: url(http://img19.olx.hu/images_aprodhu/4415195_2_644x461_portre-modell-es-portfolio-fotozast-vallalok-toltson-fel-fenykepeket.jpg)"></div>
-			<div class="info">
-				<h2>Lisa</h2>
-				<p>Lorem Ipsum Dolor Sit</p>
-			</div>
-	 	</div>  
-		<div class="buddy">
-			<div class="avatar" style="background-image: url(http://static.168ora.hu/db/09/AF/orban-d0001C9AFa1ba9618c180.jpg)"></div>
-			<div class="info">
-				<h2>Some Dude</h2>
-				<p>Lorem Ipsum Dolor Sit</p>
-			</div>
-		</div>  
+
 	</div>
 
 
@@ -61,8 +34,40 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+<script src="./js/SlackThis.js"></script>
 <script>
+    function createBuddy (i, item) {
+        var avatar = $('<div/>', {
+            addClass: 'avatar',
+            css: {
+                backgroundImage: 'url(' + item.image + ')'
+            }
+        });
+        var name = $('<h2/>', {
+            text: item.name
+        });
+        var caption = $('<p/>', {
+            text: item.title
+        });
+        var info = $('<div/>', {
+            addClass: 'info'
+        });
+        info.append(name);
+        info.append(caption);
+        var buddy = $('<div/>', {
+            addClass: 'buddy',
+            css: {
+                display: i === 0 ? 'block' : 'none'
+            }
+        });
+        buddy.append(avatar).append(info);
+
+        $('#buddy-container').append(buddy);
+
+    }
 $(function() {
+    var buddies = SlackThis.users();
+    $.each(buddies, createBuddy);
 
 	$(".buddy").on("swiperight",function(){
       $(this).addClass('rotate-left').delay(700).fadeOut(1);

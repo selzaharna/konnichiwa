@@ -1,46 +1,66 @@
 var SlackThis = (function () {
- 
+    
     var cfg = {
             api_url : "https://slack.com/api/",
-            api_token : "YOUR_TOKEN_HERE", 
+            api_token : "", 
             api_endpoints : {
                 "users" : "users.list",
-                "chat"  : "chat.postMessage"
+                "chat"  : "chat.postMessage",
+                "directmessage"  : "im.open"
             },
     },
 
-    sendMessage = function(params) {
+    openDirectMessage = function(userId) {
+        /**
+        ** Opens up a Chat room with the person you want to direct message with
+        ** Param: User: User Id (U044ABEPH) 
+        ** Returns json blob of data that will include the chat room id
+        **/
+        return get( cfg.api_endpoints.directmessage, {user : userId} );
+    }
 
-        //send Slack a message 
-        var channel  = (params.channel) ? params.channel : "U044ABEPH",
-            username = (params.username) ? params.username : "mkitzman",
-            text     = (params.text) ? params.text : "Konnichiwa!",
-            query_params = {
-                            "channel" : channel, 
-                            "username" : username, 
-                            "text" : text
-            },
-            results,
-            messageSentStatus,
+    sendMessage = function(query_params) {
+        /**
+        ** Sends a Message to a user
+        ** Param: query_params - json blob with the required values
+        **  "channel" = the channel id (U044ABEPH) that you want to post to
+        **  "username" : The name of the person sending the message (Jane Doe, JohnDoe )
+        **  "text" : text of message
+        ** Returns json blob of the message sent and a response
+        **/
+        return get( cfg.api_endpoints.chat, query_params );
 
-        //Make ajax call to send message
-        results =  get( cfg.api_endpoints.chat, query_params );
+    }
 
-        if(results.ok) {
-            messageSentStatus = true;
+    sendDirectMessage = function(message_cfg) {
+
+        /**
+        ** To send a direct message you first need to make sure a IM room is open
+        ** then use the returned channel id to send the direct message to:
+        **/
+        var directMessage = openDirectMessage(message_cfg.toUserId);
+        
+        if(directMessage.ok) {
+            
+            ///Use the channel id value returned from openDirectMessage
+            //Send message
+            return sendMessage({
+                channel : directMessage.channel.id,
+                username : message_cfg.fromUserName,
+                text : message_cfg.text
+            });
+
         } else {
-            messageSentStatus = false;
+
+             return directMessage; //This will have the error in the json blob
+
         }
 
-        return {
-            messageSent : messageSentStatus
-        }
     },
-
 
     getUsers = function (dump) {
-        //get user list
 
+        //get user list
         var results = get(cfg.api_endpoints.users),
             userList = [],
             user = {},
@@ -64,7 +84,7 @@ var SlackThis = (function () {
                             name  : (members[key].real_name) ? members[key].real_name : members[key].name,
                             email : members[key].profile.email,
                             title : (members[key].profile.title) ? members[key].profile.title : 'I have no title',
-                            image : members[key].profile.image_192
+                            image : (members[key].profile.image_original) ? members[key].profile.image_original : members[key].profile.image_192
                         }
 
                         userList.push(user);
@@ -110,7 +130,6 @@ var SlackThis = (function () {
             }
         }
 
-
         xmlhttp.open("GET",url,false);
         xmlhttp.send();
 
@@ -121,8 +140,7 @@ var SlackThis = (function () {
     // public methods
     return {
         users: getUsers,
-        sendMessage : sendMessage
+        sendDirectMessage : sendDirectMessage
     };
 
 })();
-
