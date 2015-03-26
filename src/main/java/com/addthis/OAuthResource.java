@@ -1,3 +1,7 @@
+package com.addthis;
+
+import sun.net.www.http.HttpClient;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -13,10 +17,13 @@ import java.util.Optional;
 @Produces(MediaType.APPLICATION_JSON)
 public class OAuthResource {
 
+//    final private HttpClient client;
+
     public OAuthResource(){}
 
     @GET
-    public String helloWorld(@QueryParam("name") Optional<String> name) {
+    public String helloWorld() {
         return "Hello World";
+
     }
 }

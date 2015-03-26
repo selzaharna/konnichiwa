@@ -1,0 +1,7 @@
+server:
+  type: simple
+  applicationContextPath: /konnichiwa
+  adminContextPath: /admin
+  connector:
+    type: http
+    port: 9010
