@@ -36,6 +36,7 @@
 <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
 <script src="./js/start.js"></script>
 <script src="./js/ga.js"></script>
+<script src="./js/SlackThis.js"></script>
 <script>
 $(function() {
 
@@ -57,7 +58,11 @@ $(function() {
 		audioElement.setAttribute('src', 'sound/k.mp3');
     audioElement.play();
 		$('.get-started').click(function() {
-            window.location.href = './login.html';
+			if (SlackThis.isLoggedIn()) {
+				window.location.href = './peeps.html';
+			} else {
+				window.location.href = 'http://ec2-54-68-0-23.us-west-2.compute.amazonaws.com:8080/konnichiwa/auth/authenticate';
+			}
 		});
 
 	// GA
