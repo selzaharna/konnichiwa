@@ -19,12 +19,23 @@ var SlackThis = (function () {
 
     isLoggedIn = function() {
 
+        console.log('COOKIE');
+        console.log(getUserCookie());
+        console.log(getAPITokenInURL());
+
         if(getUserCookie()) {
+            console.log('get user cookie passed');
+
             return true
         } else if (getAPITokenInURL()) {
-            setCookie(cfg.api_token, getAPITokenInURL);
+
+            console.log('token found in url ');
+
+            setCookie(cfg.api_token, getAPITokenInURL());
             return true;
         } else {
+
+            console.log('else');
             return false;
         }
 
