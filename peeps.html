@@ -76,7 +76,7 @@ $(function() {
           fromUserName = selectedAvatar.attr('data-user-name');
 
       var message = SlackThis.sendDirectMessage({
-        fromUserName : 'Konnichiwa_Bot',
+        fromUserName : fromUserName,
         toUserId : toUserId,
         text: 'Konnichiwa!'
       });

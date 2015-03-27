@@ -19,25 +19,12 @@ var SlackThis = (function () {
 
     isLoggedIn = function() {
 
-        console.log('COOKIE');
-        console.log(getUserCookie());
-        console.log(getAPITokenInURL());
-
         if(getUserCookie()) {
-            console.log('get user cookie passed');
-
             return true
         } else if (getAPITokenInURL()) {
-
-            console.log('token found in url ');
-
             setCookie(cfg.cookie_name, getAPITokenInURL());
-
-
             return true;
         } else {
-
-            console.log('else');
             return false;
         }
 
@@ -46,10 +33,6 @@ var SlackThis = (function () {
     setCookie = function(cname, cvalue) {
         var d = new Date();
         var expireDays = 90;
-
-        console.log('SET COOKIE VALUES');
-        console.log(cname);
-        console.log(cvalue);
 
         d.setTime(d.getTime() + (expireDays*24*60*60*1000));
         var expires = "expires="+d.toUTCString();
@@ -191,8 +174,6 @@ var SlackThis = (function () {
 
         url = encodeURI(cfg.api_url + url + "?token=" + getUserCookie() + querystring);
 
-        console.log('cookie');
-        console.log( getUserCookie() );
         //Make request
         xmlhttp=new XMLHttpRequest();
         xmlhttp.onreadystatechange=function() {
