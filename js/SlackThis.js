@@ -66,9 +66,9 @@ var SlackThis = (function () {
 
     getUserCookie = function(){
 
-        var regexp = new RegExp("(?:^" + cfg.cookie_name + "|;\s*"+ cfg.cookie_name + ")=(.*?)(?:;|$)", "g");
+        var regexp = new RegExp('(.*'+cfg.cookie_name+')=(.*?)(?:;|$)');
         var result = regexp.exec(document.cookie);
-        return (result === null) ? null : result[1];
+        return (result === null) ? null : result[result.length-1];
 
     },
 
