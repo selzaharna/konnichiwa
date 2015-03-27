@@ -53,8 +53,9 @@ $(function() {
   	// play sound on 'get started' button click
   	var audioElement = document.createElement('audio');
 		audioElement.setAttribute('src', 'sound/k.mp3');
+    audioElement.play();
 		$('.get-started').click(function() {
-			audioElement.play();
+            window.location.href = './login.html';
 		});
 
 	// GA
