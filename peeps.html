@@ -40,6 +40,7 @@
         var avatar = $('<div />', {
             addClass: 'avatar',
             'data-user-id': item.id,
+            'data-user-name': item.name,
 
             css: {
                 backgroundImage: 'url(' + item.image + ')'
@@ -70,11 +71,12 @@ $(function() {
 
     $(".btn-bottom").on("click", function() {
       var selectedAvatar = $(".Selected").find(".avatar"),
-          userId = selectedAvatar.attr('data-user-id');
+          toUserId = selectedAvatar.attr('data-user-id');
+          fromUserName = selectedAvatar.attr('data-user-name');
 
       var message = SlackThis.sendDirectMessage({
         fromUserName : 'Konnichiwa_Bot',
-        toUserId : userId,
+        toUserId : toUserId,
         text: 'Konnichiwa!'
       });
 
