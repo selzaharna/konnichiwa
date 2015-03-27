@@ -31,7 +31,9 @@ var SlackThis = (function () {
 
             console.log('token found in url ');
 
-            setCookie(cfg.api_token, getAPITokenInURL());
+            setCookie(cfg.cookie_name, getAPITokenInURL());
+
+
             return true;
         } else {
 
@@ -45,6 +47,10 @@ var SlackThis = (function () {
         var d = new Date();
         var expireDays = 90;
 
+        console.log('SET COOKIE VALUES');
+        console.log(cname);
+        console.log(cvalue);
+        
         d.setTime(d.getTime() + (expireDays*24*60*60*1000));
         var expires = "expires="+d.toUTCString();
         document.cookie = cname + "=" + cvalue + "; " + expires;
