@@ -270,6 +270,8 @@ form {
 	display: none;
 }
 
-
+.btn-disable {
+	background: #999 !important;
+}
 
 

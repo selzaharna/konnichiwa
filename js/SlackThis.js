@@ -1,3 +1,17 @@
+
+// KONNICHIWA BUTTON PRESS
+$(function() {
+
+    $('.btn-konnichiwa').click(function(e) {
+       $(this).text('Arigato');
+       $(this).addClass('btn-disable');
+   });
+
+});
+
+
+// SLACK THIS
+
 var SlackThis = (function () {
     
     var cfg = {
