@@ -26,7 +26,7 @@ public class KonnichiwaApplication extends Application<KonnichiwaConfiguration> 
     public void run(KonnichiwaConfiguration configuration,
                     Environment environment) {
 
-        final OAuthResource resource = new OAuthResource();
+        final OAuthResource resource = new OAuthResource(configuration);
         environment.jersey().register(resource);
     }
 
