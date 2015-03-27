@@ -99,7 +99,8 @@ var SlackThis = (function () {
             return sendMessage({
                 channel : directMessage.channel.id,
                 username : message_cfg.fromUserName,
-                text : message_cfg.text
+                text : message_cfg.text,
+                icon_url : 'https://files.slack.com/files-pri/T025QP5TC-F0467RCB3/icon_512.png'
             });
 
         } else {
