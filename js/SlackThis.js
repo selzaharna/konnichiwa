@@ -100,7 +100,7 @@ var SlackThis = (function () {
                 channel : directMessage.channel.id,
                 username : message_cfg.fromUserName,
                 text : message_cfg.text,
-                icon_url : 'https://files.slack.com/files-pri/T025QP5TC-F0467RCB3/icon_512.png'
+                icon_url : 'http://i.imgur.com/j1kZdXQ.png'
             });
 
         } else {
