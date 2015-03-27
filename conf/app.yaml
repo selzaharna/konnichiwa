@@ -12,13 +12,10 @@ logging:
 
 
 postAuthRedirect: 'http://localhost:8020/peeps.html'
+failureRedirect: 'http://c2-54-68-0-23.us-west-2.compute.amazonaws.com:8020/login.html'
 
-slackClientId: addhere
-slackRedirect: 'addhere:8080/konnichiwa/auth/response'
-slackSecret: addyoursecret
+slackClientId: '2194787930.4206060083'
+slackRedirect: 'http://localhost:8080/konnichiwa/auth/response'
+slackSecret: 8d99c620acc1199c95ab4c7e853ab0cc
 slackTokenLocation: 'https://slack.com/api/oauth.access'
 slackAuthorization: 'https://slack.com/oauth/authorize'
-
-
-
-

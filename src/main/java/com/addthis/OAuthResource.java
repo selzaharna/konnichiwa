@@ -92,6 +92,7 @@ public class OAuthResource {
 
             URI uri = new URI(config.getPostAuthRedirect()+"?access_token="+token);
 
+
             response = javax.ws.rs.core.Response.
                     seeOther(uri).
                     build();
@@ -100,7 +101,13 @@ public class OAuthResource {
 
         } catch(Exception e) {
             e.printStackTrace();
-            response =  Response.serverError().build();
+            try {
+                URI uri = new URI(config.getFailureRedirect());
+
+                response = javax.ws.rs.core.Response.
+                        seeOther(uri).
+                        build();
+            }catch (Exception exc){}
         } finally{
 
         }

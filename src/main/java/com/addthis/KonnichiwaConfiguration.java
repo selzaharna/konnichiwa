@@ -21,6 +21,8 @@ public class KonnichiwaConfiguration extends Configuration {
 
     private String postAuthRedirect;
 
+    private String failureRedirect;
+
     public String getSlackClientId() {
         return slackClientId;
     }
@@ -75,5 +77,13 @@ public class KonnichiwaConfiguration extends Configuration {
 
     public void setPostAuthRedirect(String postAuthRedirect) {
         this.postAuthRedirect = postAuthRedirect;
+    }
+
+    public String getFailureRedirect() {
+        return failureRedirect;
+    }
+
+    public void setFailureRedirect(String failureRedirect) {
+        this.failureRedirect = failureRedirect;
     }
 }
