@@ -15,15 +15,13 @@ import org.apache.oltu.oauth2.common.message.types.GrantType;
 import org.eclipse.jetty.util.URIUtil;
 import sun.net.www.http.HttpClient;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
+import javax.servlet.http.Cookie;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -37,9 +35,11 @@ import java.util.Optional;
 @Produces(MediaType.APPLICATION_JSON)
 public class OAuthResource {
 
-//    final private HttpClient client;
+    final private KonnichiwaConfiguration config;
 
-    public OAuthResource(){}
+    public OAuthResource(KonnichiwaConfiguration config){
+        this.config = config;
+    }
 
     @GET
     @Path("/authenticate")
@@ -48,9 +48,9 @@ public class OAuthResource {
         try {
 
             OAuthClientRequest oauthRequest = OAuthClientRequest
-                    .authorizationLocation("https://slack.com/oauth/authorize")
-                    .setClientId("2194787930.4206060083")
-                    .setRedirectURI("http://www-dev.addthis.com:8080/konnichiwa/auth/response")
+                    .authorizationLocation(config.getSlackAuthorization())
+                    .setClientId(config.getSlackClientId())
+                    .setRedirectURI(config.getSlackRedirect())
                     .buildQueryMessage();
 
             response.sendRedirect(oauthRequest.getLocationUri());
@@ -60,12 +60,6 @@ public class OAuthResource {
         } catch(IOException e) {
 
         }
-    }
-
-    @GET
-    @Path("/complete")
-    public String complete(@Context HttpServletRequest request){
-        return "Im here";
     }
 
 
@@ -80,10 +74,10 @@ public class OAuthResource {
             String code = oar.getCode();
 
             OAuthClientRequest authRequest = OAuthClientRequest
-                    .tokenLocation("https://slack.com/api/oauth.access")
-                    .setClientId("2194787930.4206060083")
-                    .setClientSecret("d89a56f09f24377695b2feaf636915b2")
-                    .setRedirectURI("http://www-dev.addthis.com:8080/konnichiwa/auth/response")
+                    .tokenLocation(config.getSlackTokenLocation())
+                    .setClientId(config.getSlackClientId())
+                    .setClientSecret(config.getSlackSecret())
+                    .setRedirectURI(config.getSlackRedirect())
                     .setCode(code)
                     .buildQueryMessage();
 
@@ -96,16 +90,24 @@ public class OAuthResource {
 
             String token = oAuthResponse.getAccessToken();
 
-            ObjectMapper mapper = new ObjectMapper();
-            ObjectNode payload = mapper.createObjectNode();
-            ObjectNode data = mapper.createObjectNode();
-            data.put("access_token", token);
-            payload.set("content", data);
-            response =  Response.ok(data).build();
+            URI uri = new URI(config.getPostAuthRedirect()+"?access_token="+token);
+
+
+            response = javax.ws.rs.core.Response.
+                    seeOther(uri).
+                    build();
+
+            return response;
 
         } catch(Exception e) {
             e.printStackTrace();
-            response =  Response.serverError().build();
+            try {
+                URI uri = new URI(config.getFailureRedirect());
+
+                response = javax.ws.rs.core.Response.
+                        seeOther(uri).
+                        build();
+            }catch (Exception exc){}
         } finally{
 
         }
