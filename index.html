@@ -9,8 +9,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <title>Konnichiwa!</title>
-<link rel="dns-prefetch" href="//fonts.googleapis.com">
-<link href='//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel="stylesheet" type="text/css">
+<link rel="dns-prefetch" href="http://fonts.googleapis.com">
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
@@ -53,8 +53,9 @@ $(function() {
   	// play sound on 'get started' button click
   	var audioElement = document.createElement('audio');
 		audioElement.setAttribute('src', 'sound/k.mp3');
+    audioElement.play();
 		$('.get-started').click(function() {
-			audioElement.play();
+            window.location.href = './login.html';
 		});
 
 	// GA
