@@ -50,7 +50,7 @@ var SlackThis = (function () {
         console.log('SET COOKIE VALUES');
         console.log(cname);
         console.log(cvalue);
-        
+
         d.setTime(d.getTime() + (expireDays*24*60*60*1000));
         var expires = "expires="+d.toUTCString();
         document.cookie = cname + "=" + cvalue + "; " + expires;
@@ -188,8 +188,11 @@ var SlackThis = (function () {
         }
 
         //Build url
-        url = encodeURI(cfg.api_url + url + "?token=" + cfg.api_token + querystring);
 
+        url = encodeURI(cfg.api_url + url + "?token=" + getUserCookie() + querystring);
+
+        console.log('cookie');
+        console.log( getUserCookie() );
         //Make request
         xmlhttp=new XMLHttpRequest();
         xmlhttp.onreadystatechange=function() {
