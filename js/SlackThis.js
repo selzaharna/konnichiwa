@@ -1,28 +1,62 @@
-
-// KONNICHIWA BUTTON PRESS
-$(function() {
-
-    $('.btn-konnichiwa').click(function(e) {
-       $(this).text('Arigato');
-       $(this).addClass('btn-disable');
-   });
-
-});
-
-
 // SLACK THIS
 
 var SlackThis = (function () {
+
     
+
     var cfg = {
             api_url : "https://slack.com/api/",
-            api_token : "", 
             api_endpoints : {
                 "users" : "users.list",
                 "chat"  : "chat.postMessage",
                 "directmessage"  : "im.open"
             },
+            'logged_out_error' : {
+                ok : false,
+                'error' : 'User Not logged in'
+            },
+            cookie_name : "api_token",
+            query_token_name : "access_token"
     },
+
+    isLoggedIn = function() {
+
+        if(getUserCookie()) {
+            return true
+        } else if (getAPITokenInURL()) {
+            setCookie(cfg.cookie_name, getAPITokenInURL());
+            return true;
+        } else {
+            return false;
+        }
+
+    },
+
+    setCookie = function(cname, cvalue) {
+        var d = new Date();
+        var expireDays = 90;
+
+        d.setTime(d.getTime() + (expireDays*24*60*60*1000));
+        var expires = "expires="+d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    },
+
+    getAPITokenInURL = function() {
+
+        var regex = new RegExp("[\\?&]" + cfg.query_token_name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    },
+
+    getUserCookie = function(){
+
+        var regexp = new RegExp('(.*'+cfg.cookie_name+')=(.*?)(?:;|$)');
+        var result = regexp.exec(document.cookie);
+        return (result === null) ? null : result[result.length-1];
+
+    },
+
 
     openDirectMessage = function(userId) {
         /**
@@ -52,6 +86,10 @@ var SlackThis = (function () {
         ** To send a direct message you first need to make sure a IM room is open
         ** then use the returned channel id to send the direct message to:
         **/
+        if(!isLoggedIn()) {
+            return cfg.logged_out_error;
+        }
+
         var directMessage = openDirectMessage(message_cfg.toUserId);
         
         if(directMessage.ok) {
@@ -73,6 +111,10 @@ var SlackThis = (function () {
     },
 
     getUsers = function (dump) {
+
+        if(!isLoggedIn()) {
+            return cfg.logged_out_error;
+        }
 
         //get user list
         var results = get(cfg.api_endpoints.users),
@@ -131,7 +173,8 @@ var SlackThis = (function () {
         }
 
         //Build url
-        url = encodeURI(cfg.api_url + url + "?token=" + cfg.api_token + querystring);
+
+        url = encodeURI(cfg.api_url + url + "?token=" + getUserCookie() + querystring);
 
         //Make request
         xmlhttp=new XMLHttpRequest();
@@ -151,7 +194,8 @@ var SlackThis = (function () {
     // public methods
     return {
         users: getUsers,
-        sendDirectMessage : sendDirectMessage
+        sendDirectMessage : sendDirectMessage,
+        isLoggedIn : isLoggedIn,
     };
 
 })();

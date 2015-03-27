@@ -32,47 +32,54 @@
 <script src="./js/SlackThis.js"></script>
 <script src="./js/ga.js"></script>
 <script>
-    function createBuddy (i, item) {
-        var avatar = $('<div />', {
-            addClass: 'avatar',
-            'data-user-id': item.id,
+SlackThis.isLoggedIn();
+function createBuddy (i, item) {
+    var avatar = $('<div />', {
+        addClass: 'avatar',
+        'data-user-id': item.id,
+        'data-user-name': item.name,
 
-            css: {
-                backgroundImage: 'url(' + item.image + ')'
-            }
-        });
-        var name = $('<h2/>', {
-            text: item.name
-        });
-        var caption = $('<p/>', {
-            text: item.title
-        });
-        var info = $('<div/>', {
-            addClass: 'info'
-        });
-        info.append(name).append(caption);
-        var buddy = $('<div/>', {
-            addClass: i === 0 ? 'buddy Selected' : 'buddy',
-            css: {
-                display: i === 0 ? 'block' : 'none'
-            }
-        });
-        buddy.append(avatar).append(info);
+        css: {
+            backgroundImage: 'url(' + item.image + ')'
+        }
+    });
+    var name = $('<h2/>', {
+        text: item.name
+    });
+    var caption = $('<p/>', {
+        text: item.title
+    });
+    var info = $('<div/>', {
+        addClass: 'info'
+    });
+    info.append(name).append(caption);
+    var buddy = $('<div/>', {
+        addClass: i === 0 ? 'buddy Selected' : 'buddy',
+        css: {
+            display: i === 0 ? 'block' : 'none'
+        }
+    });
+    buddy.append(avatar).append(info);
 
-        $('#buddy-container').append(buddy);
+    $('#buddy-container').append(buddy);
 
-    }
+}
+
 $(function() {
 
     $(".btn-bottom").on("click", function() {
       var selectedAvatar = $(".Selected").find(".avatar"),
-          userId = selectedAvatar.attr('data-user-id');
+          toUserId = selectedAvatar.attr('data-user-id');
+          fromUserName = selectedAvatar.attr('data-user-name');
 
       var message = SlackThis.sendDirectMessage({
         fromUserName : 'Konnichiwa_Bot',
-        toUserId : userId,
+        toUserId : toUserId,
         text: 'Konnichiwa!'
       });
+
+      $(this).text('Arigato');
+      $(this).addClass('btn-disable');
 
     });
 

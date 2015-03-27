@@ -9,8 +9,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <title>Konnichiwa!</title>
-<link rel="dns-prefetch" href="//fonts.googleapis.com">
-<link href='//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel="stylesheet" type="text/css">
+<link rel="dns-prefetch" href="http://fonts.googleapis.com">
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
@@ -32,9 +32,26 @@
 
 
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+<<<<<<< HEAD
 <script src="./js/ga.js"></script>
+=======
+<script src="./js/SlackThis.js"></script>
+<script>
+$(function() {
+
+    $('.btn-bottom').on('click', function () {
+        window.location.href = 'http://ec2-54-68-0-23.us-west-2.compute.amazonaws.com:8080/konnichiwa/auth/authenticate';
+    });
+
+if (SlackThis.isLoggedIn()) {
+    window.location.href = './peeps.html';
+}
+
+});
+</script>
+>>>>>>> 7298c0b27a79920d176bfab1b325f257202190ff
 
 </body>
 </html>
