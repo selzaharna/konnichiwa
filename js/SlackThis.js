@@ -134,7 +134,7 @@ var SlackThis = (function () {
             } else {
 
                 for (key in members) {
-                    if (members.hasOwnProperty(key) && !members[key].is_bot) {
+                    if (members.hasOwnProperty(key) && !members[key].is_bot && !deleted) {
                         user = {
                             id    : members[key].id,
                             name  : (members[key].real_name) ? members[key].real_name : members[key].name,
